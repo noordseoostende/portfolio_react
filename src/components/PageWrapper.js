@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class PageWrapper extends Component {
   render() {
@@ -9,9 +10,9 @@ class PageWrapper extends Component {
           id='mainNav'
         >
           <div className='container'>
-            <a className='navbar-brand js-scroll-trigger' href='#page-top'>
+            <Link className='navbar-brand js-scroll-trigger' to='/'>
               <img src='assets/img/navbar-logo.svg' alt='' />
-            </a>
+            </Link>
             <button
               className='navbar-toggler navbar-toggler-right'
               type='button'
@@ -27,34 +28,35 @@ class PageWrapper extends Component {
             <div className='collapse navbar-collapse' id='navbarResponsive'>
               <ul className='navbar-nav text-uppercase ml-auto'>
                 <li className='nav-item'>
-                  <a className='nav-link js-scroll-trigger' href='#services'>
+                  <Link className='nav-link js-scroll-trigger' to='/services'>
                     Services
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link js-scroll-trigger' href='#portfolio'>
+                  <Link className='nav-link js-scroll-trigger' to='/portfolio'>
                     Portfolio
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link js-scroll-trigger' href='#about'>
+                  <Link className='nav-link js-scroll-trigger' to='/about'>
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link js-scroll-trigger' href='#team'>
+                  <Link className='nav-link js-scroll-trigger' to='/team'>
                     Team
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link js-scroll-trigger' href='#contact'>
+                  <Link className='nav-link js-scroll-trigger' to='#contact'>
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
+        {this.props.children}
       </div>
     );
   }
