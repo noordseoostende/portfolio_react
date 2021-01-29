@@ -8,8 +8,7 @@ class About extends Component {
       <div>
         <Header
           title='Over mij'
-          subtitle='Ik ben de webontwikkelaar wie elke dag met de code bezig is.'
-          buttonText='Zeg mij meer'
+          subtitle='Ik ben de webontwikkelaar.'
           showButton={false}
           image={image}
         />
