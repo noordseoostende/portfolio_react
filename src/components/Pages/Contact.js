@@ -1,4 +1,37 @@
 import React, { Component } from 'react';
+import Field from '../Common/Field';
+const fields = {
+  sections: [
+    [
+      {
+        name: 'name',
+        elementName: 'input',
+        type: 'text',
+        placeholder: 'Jouw naam *',
+      },
+      {
+        name: 'email',
+        elementName: 'input',
+        type: 'email',
+        placeholder: 'Jouw email *',
+      },
+      {
+        name: 'phone',
+        elementName: 'input',
+        type: 'text',
+        placeholder: 'Jouw GSM *',
+      },
+    ],
+    [
+      {
+        name: 'message',
+        elementName: 'textarea',
+        type: 'text',
+        placeholder: 'Schtijf jouw boodschap *',
+      },
+    ],
+  ],
+};
 
 class Contact extends Component {
   constructor(props) {
@@ -11,6 +44,10 @@ class Contact extends Component {
       message: '',
     };
   }
+  submitForm = e => {
+    e.preventDefault();
+    alert('Het is gedaan. Dank u wel!');
+  };
 
   render() {
     return (
@@ -24,63 +61,36 @@ class Contact extends Component {
               We kunnen onmiddellijk antwoorden!
             </h3>
           </div>
-          <form id='contactForm' name='sentMessage' novalidate='novalidate'>
+          <form
+            onSubmit={e => this.submitForm(e)}
+            name='sentMessage'
+            novalidate='novalidate'
+          >
             <div className='row align-items-stretch mb-5'>
-              <div className='col-md-6'>
-                <div className='form-group'>
-                  <input
-                    className='form-control'
-                    id='name'
-                    type='text'
-                    placeholder='Jouw Naam *'
-                    required='required'
-                    data-validation-required-message='Schrijf jouw naam'
-                    value={this.state.name}
-                    onChange={e => this.setState({ name: e.target.value })}
-                  />
-                  <p className='help-block text-danger'></p>
-                </div>
-                <div className='form-group'>
-                  <input
-                    className='form-control'
-                    id='email'
-                    type='email'
-                    placeholder='Jouw Email *'
-                    required='required'
-                    data-validation-required-message='Schrijf jouw email address in.'
-                  />
-                  <p className='help-block text-danger'></p>
-                </div>
-                <div className='form-group mb-md-0'>
-                  <input
-                    className='form-control'
-                    id='phone'
-                    type='tel'
-                    placeholder='Jouw GSM *'
-                    required='required'
-                    data-validation-required-message='Schrijf jouw telefoonnummer in.'
-                  />
-                  <p className='help-block text-danger'></p>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='form-group form-group-textarea mb-md-0'>
-                  <textarea
-                    className='form-control'
-                    id='message'
-                    placeholder='Jouw boodschap *'
-                    required='required'
-                    data-validation-required-message='Schrijf jouw boodschap.'
-                  ></textarea>
-                  <p className='help-block text-danger'></p>
-                </div>
-              </div>
+              {fields.sections.map((section, sectionIndex) => {
+                console.log('Rendering section', sectionIndex, 'with', section);
+                return (
+                  <div className='col-md-6' key={sectionIndex}>
+                    {section.map((field, i) => {
+                      return (
+                        <Field
+                          {...field}
+                          key={i}
+                          value={this.state[field.name]}
+                          onChange={e =>
+                            this.setState({ [field.name]: e.target.value })
+                          }
+                        />
+                      );
+                    })}
+                  </div>
+                );
+              })}
             </div>
             <div className='text-center'>
               <div id='success'></div>
               <button
                 className='btn btn-primary btn-xl text-uppercase'
-                id='sendMessageButton'
                 type='submit'
               >
                 Verzenden
