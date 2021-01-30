@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Field from '../Common/Field';
+import { withFormik } from 'formik';
+
 const fields = {
   sections: [
     [
@@ -34,16 +36,6 @@ const fields = {
 };
 
 class Contact extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-    };
-  }
   submitForm = e => {
     e.preventDefault();
     alert('Het is gedaan. Dank u wel!');
@@ -72,16 +64,7 @@ class Contact extends Component {
                 return (
                   <div className='col-md-6' key={sectionIndex}>
                     {section.map((field, i) => {
-                      return (
-                        <Field
-                          {...field}
-                          key={i}
-                          value={this.state[field.name]}
-                          onChange={e =>
-                            this.setState({ [field.name]: e.target.value })
-                          }
-                        />
-                      );
+                      return <Field {...field} key={i} />;
                     })}
                   </div>
                 );
@@ -103,4 +86,25 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default withFormik({
+  mapPropsToValues: () => ({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  }),
+  validate: values => {
+    const errors = {};
+
+    Object.keys(values).map(v => {
+      if (!values[v]) {
+        errors[v] = 'Required';
+      }
+    });
+
+    return errors;
+  },
+  handleSubmit: (values, { setSubmitting }) => {
+    alert('Formulier werd ingevoerd');
+  },
+})(Contact);
