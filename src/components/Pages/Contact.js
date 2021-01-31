@@ -36,11 +36,6 @@ const fields = {
 };
 
 class Contact extends Component {
-  submitForm = e => {
-    e.preventDefault();
-    alert('Het is gedaan. Dank u wel!');
-  };
-
   render() {
     return (
       <section className='page-section' id='contact'>
@@ -54,7 +49,7 @@ class Contact extends Component {
             </h3>
           </div>
           <form
-            onSubmit={e => this.submitForm(e)}
+            onSubmit={this.props.handleSubmit}
             name='sentMessage'
             novalidate='novalidate'
           >
@@ -64,7 +59,18 @@ class Contact extends Component {
                 return (
                   <div className='col-md-6' key={sectionIndex}>
                     {section.map((field, i) => {
-                      return <Field {...field} key={i} />;
+                      return;
+
+                      <Field
+                        {...field}
+                        key={i}
+                        value={this.props.values[field.name]}
+                        name={field.name}
+                        onChange={this.props.handleChange}
+                        onBlur={this.props.handleBlur}
+                        touched={this.props.touched[field.name]}
+                        errors={this.props.errors[field.name]}
+                      />;
                     })}
                   </div>
                 );
@@ -105,6 +111,7 @@ export default withFormik({
     return errors;
   },
   handleSubmit: (values, { setSubmitting }) => {
-    alert('Formulier werd ingevoerd');
+    console.log('VALUES', values);
+    alert('Formulier werd ingevoerd', JSON.stringify(values));
   },
 })(Contact);

@@ -13,6 +13,8 @@ class Field extends Component {
             required='required'
             data-validation-required-message='Schrijf jouw naam'
             name={this.props.name}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
           />
         ) : (
           <textarea
@@ -22,9 +24,15 @@ class Field extends Component {
             required='required'
             data-validation-required-message='Schrijf jouw boodschap.'
             name={this.props.name}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
           />
         )}
-        <p className='help-block text-danger'></p>
+        <p className='help-block text-danger'>
+          {this.props.touched && this.props.errors && (
+            <span>Deze veld vereist is!</span>
+          )}
+        </p>
       </div>
     );
   }
