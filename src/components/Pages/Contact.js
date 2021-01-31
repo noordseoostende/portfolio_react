@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Field from '../Common/Field';
 import { withFormik } from 'formik';
+import * as Yup from 'yup';
 
 const fields = {
   sections: [
@@ -99,17 +100,23 @@ export default withFormik({
     phone: '',
     message: '',
   }),
-  validate: values => {
-    const errors = {};
+  validationSchema: Yup.object().shape({
+    name: Yup.string()
+      .min(3, 'Je naam is langer dan wat nodig is.')
+      .required('Je moet je naam aangeven.'),
+    email: Yup.string()
+      .email('Je moet jouw geldige email aangeven')
+      .required('We hoeven jouw email zien'),
+    phone: Yup.string()
+      .min(10, 'Voer min 10 cijfers van jouw GSM.')
+      .max(15)
+      .max(15, 'Jouw GSM te lang is.')
+      .required('We hoeven jouw GSM nummer kennen.'),
+    message: Yup.string()
+      .min(500, 'Je moet meer aangeven')
+      .required('Een boodschap vereist is.'),
+  }),
 
-    Object.keys(values).map(v => {
-      if (!values[v]) {
-        errors[v] = 'Required';
-      }
-    });
-
-    return errors;
-  },
   handleSubmit: (values, { setSubmitting }) => {
     console.log('VALUES', values);
     alert('Formulier werd ingevoerd', JSON.stringify(values));
