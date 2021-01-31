@@ -5,7 +5,7 @@ const services = [
   {
     title: 'E-Commerce',
     description: 'Ik heb ervaring met e-commerce in react en wordpress',
-    icon: 'fas fa-shopping-cart',
+    icon: 'fas fa-dice-five',
   },
   {
     title: 'Responsive Design',

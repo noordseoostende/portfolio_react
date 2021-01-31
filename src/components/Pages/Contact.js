@@ -60,18 +60,18 @@ class Contact extends Component {
                 return (
                   <div className='col-md-6' key={sectionIndex}>
                     {section.map((field, i) => {
-                      return;
-
-                      <Field
-                        {...field}
-                        key={i}
-                        value={this.props.values[field.name]}
-                        name={field.name}
-                        onChange={this.props.handleChange}
-                        onBlur={this.props.handleBlur}
-                        touched={this.props.touched[field.name]}
-                        errors={this.props.errors[field.name]}
-                      />;
+                      return (
+                        <Field
+                          {...field}
+                          key={i}
+                          value={this.props.values[field.name]}
+                          name={field.name}
+                          onChange={this.props.handleChange}
+                          onBlur={this.props.handleBlur}
+                          touched={this.props.touched[field.name]}
+                          errors={this.props.errors[field.name]}
+                        />
+                      );
                     })}
                   </div>
                 );
