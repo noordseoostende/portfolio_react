@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-ìmport Field from '../Common/Field';
-import { Field, withFormik } from 'formik';
+import Field from '../Common/Field';
+import { withFormik } from 'formik';
 import * as Yup from 'yup';
 
 const fields = [
@@ -8,6 +8,7 @@ const fields = [
   {name: 'password', elementName: 'input', type: 'password', placeholder: 'Jouw wachtwoord'}
 ]
 
+// eslint-disable-next-line no-unused-vars
 class Login extends Component {
   render() {
     return (
@@ -15,9 +16,14 @@ class Login extends Component {
       <div className="container">
         <div className="login-form">
           <div className="row">
+            <h1>Login</h1>
+          </div>
+          <div className="row">
+            <form onSubmit={this.props.handleSubmit}>
+
             {fields.map((f, i) => {
               return (
-              <div className="col-md-12">
+                <div className="col-md-12">
               <Field
                 key={i}
                 {...f}
@@ -27,9 +33,13 @@ class Login extends Component {
                 onBlur={this.props.handleBlur}
                 touched={(this.props.touched[f.name])}
                 errors={this.props.errors[f.name]}
-              />
+                />
               </div>)
             })}
+            <div className="col-md-12">
+              <button className="btn btn-primary">Inloggen</button>
+            </div>
+            </form>
           </div>
         </div>
         </div>
