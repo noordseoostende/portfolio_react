@@ -6,7 +6,8 @@
   max-width: 500px;
   margin: auto;
   /* margin-top: 100px; */
-  background: #fff;
+  /* background: #fff; */
+  background-image: linear-gradient(to left, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
   padding: 30px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0,.2);
   border-radius: 5px;

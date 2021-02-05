@@ -4,7 +4,7 @@ class Field extends Component {
   render() {
     return (
       <div className='form-group'>
-        {this.props.elementName === 'input' ? (
+        {this.props.elementName === 'input' ? 
           <input
             className='form-control'
             id={this.props.name}
@@ -16,7 +16,7 @@ class Field extends Component {
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
           />
-        ) : (
+          : 
           <textarea
             className='form-control'
             id={this.props.name}
@@ -27,7 +27,7 @@ class Field extends Component {
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
           />
-        )}
+        }
         <p className='help-block text-danger'>
           {this.props.touched && this.props.errors && (
             <span>Deze veld vereist is!</span>

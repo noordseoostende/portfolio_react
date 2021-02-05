@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Field from '../Common/Field';
 import { withFormik } from 'formik';
+import {connect} from 'react-redux';
 import * as Yup from 'yup';
+import * as AuthActions from '../../store/actions/authActions';
 
 const fields = [
   {name: 'email', elementName: 'input', type: 'email', placeholder: 'Jouw email'},
@@ -47,7 +49,21 @@ class Login extends Component {
   }
 }
 
-export default withFormik({
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (email, pass) => {
+      dispatch(AuthActions.login(email, pass));
+    }
+  }
+}
+
+export default connect(withFormik({
   mapPropsToValues: () => ({
     email: '',
     password: ''
@@ -59,4 +75,4 @@ export default withFormik({
   handleSubmit: (values, {setSubmitting}) => {
     console.log("Login attempt", values);
   }
-});
+}))(Login);
