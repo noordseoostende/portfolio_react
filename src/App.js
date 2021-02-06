@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageWrapper from './components/PageWrapper';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 
@@ -12,6 +12,7 @@ import Login from './components/Pages/Login';
 import Dashboard from './components/Pages/Dashboard';
 
 import AdminWrapper from './components/AdminWrapper';
+import LoginWrapper from './components/LoginWrapper';
 
 class App extends Component {
   render() {
@@ -21,15 +22,22 @@ class App extends Component {
           <Route 
             path="/admin"
             render={props => {
+              console.log("Props", props);
               return (
-                <AdminWrapper>
-                {this.props.auth.token ?
-                  <Dashboard />
-                :
-                  <Login />
-                }
+                <div>
 
-              </AdminWrapper>
+
+                {this.props.auth ?
+                  <AdminWrapper>
+                  <Dashboard />
+                  </AdminWrapper>
+                :
+                    <LoginWrapper>
+                      <Login />
+                  </LoginWrapper>
+              }
+              </div>
+
             )
           }
             }
