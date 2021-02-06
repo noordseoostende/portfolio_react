@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PageWrapper from './components/PageWrapper';
+// eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
@@ -26,7 +27,15 @@ class App extends Component {
               return (
                 <div>
 
-
+                  
+                  {/* <AdminWrapper>
+                  <Dashboard />
+                  </AdminWrapper>
+                
+                    <LoginWrapper>
+                      <Login />
+                  </LoginWrapper> */}
+              
                 {this.props.auth ?
                   <AdminWrapper>
                   <Dashboard />
