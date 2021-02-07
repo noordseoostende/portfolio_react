@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 class Dashboard extends Component {
   render() {
-    return (<h1>Je was ingelogd met deze teken: {this.props.auth.token}</h1>);
+    return (
+    <h1>Je was ingelogd met deze teken: {this.props.auth.token}</h1>)
   }
 }
 const mapStateToProps = state => {

@@ -69,7 +69,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-) (withFormik({
+)(withFormik({
   mapPropsToValues: () => ({
     email: '',
     password: ''
