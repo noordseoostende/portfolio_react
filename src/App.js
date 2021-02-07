@@ -10,13 +10,15 @@ import Home from './components/Pages/Home';
 import About from './components/Pages/About';
 import Contact from './components/Pages/Contact';
 import Login from './components/Pages/Login';
-import Dashboard from './components/Pages/Admin/Dashboard';
 
 //Admin Pages
-import AdminWrapper from './components/AdminWrapper';
-import LoginWrapper from './components/LoginWrapper';
+import Dashboard from './components/Pages/Admin/Dashboard';
 import Users from './components/Pages/Admin/Users';
 import Posts from './components/Pages/Admin/Posts';
+import AddPost from './components/Pages/Admin/AddPost';
+
+import AdminWrapper from './components/AdminWrapper';
+import LoginWrapper from './components/LoginWrapper';
 
 class App extends Component {
   render() {
@@ -30,7 +32,7 @@ class App extends Component {
               return (
                 <div>
               
-                {this.props.auth ?
+                {this.props.auth.token ?
                   <AdminWrapper>
                   <Users />
                   </AdminWrapper>
@@ -43,7 +45,25 @@ class App extends Component {
 
             )}} 
           />
+          <Route 
+            path='/admin/posts/add'
+            render={props => {
+              return (
+                <div>
 
+                  {this.props.auth.token ?
+                    <AdminWrapper>
+                      <AddPost />
+                    </AdminWrapper>
+                  :
+                      <LoginWrapper>
+                        <Login />
+                    </LoginWrapper>
+                }
+                </div>
+              )
+            }}
+          />
           <Route 
             path='/admin/posts'
             render={props => {
@@ -51,7 +71,7 @@ class App extends Component {
               return (
                 <div>
               
-                {this.props.auth ?
+                {this.props.auth.token ?
                   <AdminWrapper>
                     <Posts />
                   </AdminWrapper>
@@ -73,7 +93,7 @@ class App extends Component {
               return (
                 <div>
               
-                {this.props.auth ?
+                {this.props.auth.token ?
                   <AdminWrapper>
                     <Dashboard />
                   </AdminWrapper>

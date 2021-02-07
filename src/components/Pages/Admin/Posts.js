@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import TableView from '../../Common/TableView';
 import { connect } from 'react-redux';
 import * as AdminActions from '../../../store/actions/adminActions';
-
+import { Fab, withStyles, Link } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import {Link as RouterLink} from 'react-router-dom'
 
 const columns = [
   {label: 'ID', name: 'id'},
@@ -10,12 +12,20 @@ const columns = [
   
 ]
 
+const styles = theme => ({
+  fab: {
+    position: 'fixed',
+    bottom: '50px',
+    right: '50px'
+  }
+});
+
 class Posts extends Component {
 
   componentDidMount(){
     this.props.getPosts(this.props.auth.token);
   }
-  
+
   render() {
     const posts = this.props.admin.posts;
     return (<div>
@@ -24,6 +34,9 @@ class Posts extends Component {
           columns={columns}
           rows={posts}
         />
+        <Fab component={RouterLink} to="/admin/posts/add" color="secondary" aria-label="Add" className={classes.fab}>
+          <EditIcon />
+        </Fab>
     </div>);
   }
 }
@@ -46,4 +59,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Posts);
+)(withStyles(styles)(Posts));
