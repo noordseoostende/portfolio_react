@@ -5,7 +5,8 @@ import "./assets/css/admin.css";
 import classNames from 'classnames';
 import {withStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import { Divider, Drawer, IconButton, List, ListItem, Toolbar, Typography } from '@material-ui/core';
+import { Divider, Drawer, IconButton, Toolbar, Typography } from '@material-ui/core';
+import Sidebar from './Common/Sidebar';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
@@ -104,11 +105,7 @@ class AdminWrapper extends Component {
 
           </div>
           <Divider />
-          <List>
-            <ListItem>
-              Dashboard
-            </ListItem>
-          </List>
+          <Sidebar />
         </Drawer>
       {this.props.children}
     </div>);
