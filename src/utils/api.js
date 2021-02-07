@@ -8,6 +8,18 @@ const API = {
       success(res);
     });
 
+  },
+  getUsers: (token, succes) => {
+    axios.get(`${host}/api/users?access_token=${token}`)
+    .then(res => {
+        success(res);
+    })
+  },
+  getPosts: (token, succes) => {
+    axios.get(`${host}/api/Posts?access_token=${token}`)
+    .then(res => {
+      succes(res);
+    })
   }
 }
 
